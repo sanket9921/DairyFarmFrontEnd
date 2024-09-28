@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MilkQualityForm from './MilkQualityForm';
 import { MilkProduction } from '../../types/MilkProduction';
 import { addMilkProductionForAnimal } from '../../services/MilkProductionService/milkProductionService';
 import SelectGroupOne from '../Forms/SelectGroup/SelectGroupOne';
+import { getIdandTagNameOfAnimal } from '../../services/animalService';
+import { Animal } from '../../types/animal';
 
 const MilkByAnimalForm: React.FC = () => {
     const [production, setProduction] = useState<MilkProduction>({
         animalId: undefined,
-        totalQuantity: 0,
+        totalQuantity: '',
         productionDate: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
         notes: '',
     });
 
     const [savedProductionId, setSavedProductionId] = useState<number | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [animals, setAnimals] = useState<Animal[]>([]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+
+    useEffect(() => {
+        getIdandTagNameOfAnimal(1) //User Id
+            .then(data => setAnimals(data))  // Set the animals from service
+            .catch(error => console.error('Error fetching animals:', error));
+    }, [1]); // Userid
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setProduction((prev) => ({
             ...prev,
@@ -53,56 +63,6 @@ const MilkByAnimalForm: React.FC = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <h2>Milk Entry by Individual Animal</h2>
-                <label>
-                    Animal ID:
-                    <input
-                        type="number"
-                        name="animalId"
-                        value={production.animalId || ''}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <label>
-                    Quantity (liters):
-                    <input
-                        type="number"
-                        name="totalQuantity"
-                        value={production.totalQuantity}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <label>
-                    Production Date:
-                    <input
-                        type="date"
-                        name="productionDate"
-                        value={production.productionDate}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <label>
-                    Notes:
-                    <textarea
-                        name="notes"
-                        value={production.notes}
-                        onChange={handleChange}
-                    />
-                </label>
-
-                <button type="submit">Submit</button>
-            </form>
-
-            {savedProductionId && (
-                <>
-                    <h3>Milk Quality Details</h3>
-                    <MilkQualityForm productionId={savedProductionId} />
-                </>
-            )}
 
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
@@ -110,30 +70,56 @@ const MilkByAnimalForm: React.FC = () => {
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                     <h3 className="font-medium text-black dark:text-white">
-                        Contact Form
+                    Milk Entry by Animal
                     </h3>
                 </div>
-                <form action="#">
+                <form onSubmit={handleSubmit}>
                     <div className="p-6.5">
                         <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                            <SelectGroupOne />
                             <div className="w-full xl:w-1/2">
                                 <label className="mb-2.5 block text-black dark:text-white">
-                                    First name
+                                    Select Animal
+                                </label>
+                                <select
+                                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black"
+                                    name="animalId"
+                                    value={production.animalId || ''}
+                                    onChange={handleChange}
+                                    required
+                                >
+                                    <option value="">Select Animal</option>
+                                    {animals.map(animal => (
+                                        <option key={animal.animalId} value={animal.animalId}>
+                                            {animal.tagNumber}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="w-full xl:w-1/2">
+                                <label className="mb-2.5 block text-black dark:text-white">
+                                    Quantity (liters):
                                 </label>
                                 <input
-                                    type="text"
-                                    placeholder="Enter your first name"
+                                    type="number"
+                                    name="totalQuantity"
+                                    value={production.totalQuantity}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Enter Milk Quantity in Liter"
                                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                 />
                             </div>
 
                             <div className="w-full xl:w-1/2">
                                 <label className="mb-2.5 block text-black dark:text-white">
-                                    Last name
+                                    Production Date
                                 </label>
                                 <input
-                                    type="text"
+                                    type="date"
+                                    name="productionDate"
+                                    value={production.productionDate}
+                                    onChange={handleChange}
+                                    required
                                     placeholder="Enter your last name"
                                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                 />
@@ -144,6 +130,9 @@ const MilkByAnimalForm: React.FC = () => {
                                 Message
                             </label>
                             <textarea
+                                name="notes"
+                                value={production.notes}
+                                onChange={handleChange}
                                 rows={6}
                                 placeholder="Type your message"
                                 className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -182,7 +171,15 @@ const MilkByAnimalForm: React.FC = () => {
                                 />
                             </div>
                         </div>
-                        
+
+                        {savedProductionId && (
+                            <>
+                                <h3>Milk Quality Details</h3>
+                                <MilkQualityForm productionId={savedProductionId} />
+                            </>
+                        )}
+
+
                         <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
                             Send Message
                         </button>

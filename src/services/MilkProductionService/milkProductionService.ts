@@ -13,7 +13,7 @@ export const addMilkProduction = async (production: MilkProduction): Promise<Mil
 };
 
 
-export const addMilkProductionForAnimal = async (animalId: number, totalQuantity: number, productionDate: Date, notes?: string) => {
+export const addMilkProductionForAnimal = async (animalId: number, totalQuantity: string, productionDate: Date, notes?: string) => {
     const response = await axios.post(`${API_URL}/animal`, null, {
         params: {
             animalId,

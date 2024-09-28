@@ -35,6 +35,18 @@ export const getAnimalsByUserId = async (userId: number): Promise<AnimalDB[]> =>
   return response.data;
 };
 
+export const getIdandTagNameOfAnimal = async (userId: number) => {
+  try {
+      const response = await axios.get(`${API_URL}/list`, {
+          params: { userId } // Send userId as query param
+      });
+      return response.data;  // Return the list of animals
+  } catch (error) {
+      console.error('Error fetching animals:', error);
+      throw error;  // Re-throw error so it can be handled by the component
+  }
+};
+
 
 // Update animal details with optional image
 export const updateAnimal = async (
