@@ -23,6 +23,7 @@ import EmployeeDashboard from './pages/EmployeeDashboard';
 import AnimalList from './components/Animals/AnimalList';
 import AnimalProfile from './components/Animals/AnimalProfile';
 import MilkEntryForm from './components/MilkProductions/MilkEntryForm';
+import BreedingRecordForm from './components/Breed Management/BreedingRecordForm';
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
@@ -88,12 +89,22 @@ function App() {
           }
         />
 
-<Route
+      <Route
           path="/addmilkproduction"
           element={
             <>
               <PageTitle title="Add Milk Production | Smart Dairy" />
               <MilkEntryForm />
+            </>
+          }
+        />
+
+<Route
+          path="/addbreedingrecord"
+          element={
+            <>
+              <PageTitle title="Add Milk Production | Smart Dairy" />
+              <BreedingRecordForm />
             </>
           }
         />

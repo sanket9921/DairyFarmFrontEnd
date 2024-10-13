@@ -3,7 +3,7 @@ import { createAnimal, updateAnimal, getAnimalById } from "../../services/animal
 import { Animal } from '../../types/animal';
 import { useNavigate, useParams } from 'react-router-dom';
 import Breadcrumb from '../Breadcrumbs/Breadcrumb';
-import userSix from '../../images/user/user-06.png'; // Default image placeholder
+import profile from '../../images/user/profile.png'; // Default image placeholder
 
 const initialAnimalState: Animal = {
   user_id: 1,
@@ -66,10 +66,18 @@ const AnimalForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='bg-white p-5 rounded-sm'>
       <Breadcrumb pageName={id ? 'Edit Animal' : 'Add Animal'} />
       
       <form onSubmit={handleSubmit}>
+         {/* Image Preview */}
+         <div className="flex justify-center mb-4.5">
+          <img
+            src={imagePreview || profile} // Display selected image or a default placeholder
+            alt="Animal Preview"
+            className="w-40 h-40 object-cover rounded"
+          />
+        </div>
         {/* Image Upload Section */}
         <div className="mb-4.5">
           <label className="mb-2.5 block text-black dark:text-white">
@@ -83,14 +91,7 @@ const AnimalForm: React.FC = () => {
           />
         </div>
 
-        {/* Image Preview */}
-        <div className="flex justify-center mb-4.5">
-          <img
-            src={imagePreview || userSix} // Display selected image or a default placeholder
-            alt="Animal Preview"
-            className="w-40 h-40 object-cover rounded"
-          />
-        </div>
+       
 
         {/* Tag Number */}
         <div className="mb-4.5">

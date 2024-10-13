@@ -95,38 +95,38 @@ const WholeFarmMilkForm: React.FC = () => {
                     </div>
 
                     <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                        <div className="w-full xl:w-1/2">
-                            <label className="mb-2.5 block text-black dark:text-white">
-                                Quantity (liters):
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="Enter the quantity"
-                                className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                            />
-                        </div>
+                            <div className="w-full xl:w-1/2">
+                                <label className="mb-2.5 block text-black dark:text-white">
+                                    Fat
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter FATs"
+                                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                />
+                            </div>
+                            <div className="w-full xl:w-1/2">
+                                <label className="mb-2.5 block text-black dark:text-white">
+                                    SNF
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter SNF"
+                                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                />
+                            </div>
 
-                        <div className="w-full xl:w-1/2">
-                            <label className="mb-2.5 block text-black dark:text-white">
-                                Production Date:
-                            </label>
-                            <input
-                                type="date"
-                                placeholder="Enter the date"
-                                className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                            />
+                            <div className="w-full xl:w-1/2">
+                                <label className="mb-2.5 block text-black dark:text-white">
+                                Lactose
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Lactose"
+                                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                />
+                            </div>
                         </div>
-                        <div className="w-full xl:w-1/2">
-                            <label className="mb-2.5 block text-black dark:text-white">
-                                Production Date:
-                            </label>
-                            <input
-                                type="date"
-                                placeholder="Enter the date"
-                                className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                            />
-                        </div>
-                    </div>
                     <button type="submit" className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
                         Add Milk
                     </button>

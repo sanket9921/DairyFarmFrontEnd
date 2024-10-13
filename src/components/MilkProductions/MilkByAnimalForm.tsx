@@ -141,32 +141,32 @@ const MilkByAnimalForm: React.FC = () => {
                         <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
                             <div className="w-full xl:w-1/2">
                                 <label className="mb-2.5 block text-black dark:text-white">
-                                    First name
+                                    Fat
                                 </label>
                                 <input
                                     type="text"
-                                    placeholder="Enter your first name"
+                                    placeholder="Enter FATs"
                                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                 />
                             </div>
                             <div className="w-full xl:w-1/2">
                                 <label className="mb-2.5 block text-black dark:text-white">
-                                    First name
+                                    SNF
                                 </label>
                                 <input
                                     type="text"
-                                    placeholder="Enter your first name"
+                                    placeholder="Enter SNF"
                                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                 />
                             </div>
 
                             <div className="w-full xl:w-1/2">
                                 <label className="mb-2.5 block text-black dark:text-white">
-                                    Last name
+                                Lactose
                                 </label>
                                 <input
                                     type="text"
-                                    placeholder="Enter your last name"
+                                    placeholder="Enter Lactose"
                                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                 />
                             </div>
